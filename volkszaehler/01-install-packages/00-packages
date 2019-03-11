@@ -1,0 +1,6 @@
+ca-certificates zip unzip
+git-core
+default-mysql-server default-mysql-client
+mosquitto
+php php-cli php-cgi php-mysql php-apcu php-xml php-mbstring
+cmake autoconf libtool uuid-dev libcurl4-openssl-dev libssl-dev libgnutls28-dev libgcrypt20-dev libmicrohttpd-dev libsasl2-dev libunistring-dev libmosquitto-dev
