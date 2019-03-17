@@ -1,0 +1,13 @@
+[Unit]
+Description=vzlogger
+After=syslog.target network.target
+Requires=
+
+[Service]
+ExecStart=/usr/local/bin/vzlogger -d
+ExecReload=/bin/kill -HUP $MAINPID
+StandardOutput=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

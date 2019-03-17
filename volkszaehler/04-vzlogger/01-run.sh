@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+install -m 644 files/vzlogger.service "${ROOTFS_DIR}/etc/systemd/system/vzlogger.service"
+
 on_chroot << EOF
 if [ -d /home/pi/vzlogger ]; then
     cd /home/pi/vzlogger

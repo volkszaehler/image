@@ -1,0 +1,13 @@
+[Unit]
+Description=middleware
+After=syslog.target network.target
+Requires=
+
+[Service]
+ExecStart=/usr/bin/php /home/pi/volkszaehler.org/vendor/bin/ppm start -c /home/pi/volkszaehler.org/etc/middleware.json
+ExecReload=/bin/kill -HUP $MAINPID
+StandardOutput=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -2,6 +2,7 @@
 
 install -m 644 files/10-buster.list		"${ROOTFS_DIR}/etc/apt/sources.list.d/"
 install -m 644 files/10-buster		"${ROOTFS_DIR}/etc/apt/preferences.d/"
+install -m 644 files/middleware.service "${ROOTFS_DIR}/etc/systemd/system/middleware.service"
 
 on_chroot << EOF
 apt update
