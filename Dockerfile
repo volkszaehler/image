@@ -7,6 +7,7 @@ RUN apt-get -y update && \
         git vim parted \
         quilt coreutils qemu-user-static debootstrap zerofree zip dosfstools \
         bsdtar libcap2-bin rsync grep udev xz-utils curl xxd file kmod\
+        systemd-container\
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /pi-gen/

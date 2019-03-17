@@ -9,7 +9,7 @@ else
     cd /home/pi/vzlogger
 fi
 
-if [ !-e /usr/local/bin/vzlogger ]; then
+if [ ! -e /usr/local/bin/vzlogger ]; then
     ./install.sh
 fi
 EOF
