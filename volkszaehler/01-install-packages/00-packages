@@ -3,5 +3,5 @@ git-core
 default-mysql-server default-mysql-client
 mosquitto
 cmake autoconf libtool uuid-dev libcurl4-openssl-dev libssl-dev libgnutls28-dev libgcrypt20-dev libmicrohttpd-dev libsasl2-dev libunistring-dev libmosquitto-dev
-# not installed as coming from buster
-# php php-cli php-cgi php-mysql php-apcu php-xml php-mbstring
+php-fpm php-gd php-intl php-mbstring php-mysql php-imap php7.3-opcache php-sqlite3 php-xml php-xmlrpc php-zip php-cli php-apcu
+
