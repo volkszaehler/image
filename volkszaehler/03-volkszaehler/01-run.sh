@@ -31,3 +31,34 @@ cp etc/config.dist.yaml etc/config.yaml
 chown -R pi:pi /home/pi/volkszaehler
 
 EOF
+
+on_chroot << EOF
+mysqld_safe --log_error=/var/log/mysql/error.log &
+
+sleep 3
+
+echo "create volkszaehler.org database and admin user..."
+mysql <<-SQL
+	CREATE DATABASE volkszaehler;
+	CREATE USER 'vz_admin'@'localhost' IDENTIFIED BY 'admin_demo';
+	GRANT ALL ON volkszaehler.* TO 'vz_admin'@'localhost' WITH GRANT OPTION;
+SQL
+
+echo "creating database schema..."
+php /home/pi/volkszaehler/bin/doctrine orm:schema-tool:create
+php /home/pi/volkszaehler/bin/doctrine orm:generate-proxies
+
+echo "create volkszaehler.org database user..."
+mysql <<-SQL
+	CREATE USER 'vz'@'localhost' IDENTIFIED BY 'demo';
+	GRANT USAGE ON volkszaehler.* TO 'vz'@'localhost';
+	GRANT SELECT, UPDATE, INSERT ON volkszaehler.* TO 'vz'@'localhost';
+	GRANT DELETE ON volkszaehler.entities_in_aggregator TO 'vz'@'localhost';
+	GRANT DELETE ON volkszaehler.properties TO 'vz'@'localhost';
+	GRANT DELETE ON volkszaehler.aggregate TO 'vz'@'localhost';
+	SHUTDOWN;
+SQL
+
+sleep 3
+
+EOF
